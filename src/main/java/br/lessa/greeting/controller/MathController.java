@@ -50,6 +50,12 @@ public class MathController {
         return convertToDouble(numberOne) / convertToDouble(numberTwo);
     }
 
+    @RequestMapping("/sqrt/{number}")
+    public Double squareRoot(@PathVariable("number") String number) throws UnssuportedMathOperationException{
+        if(!isNumeric(number)) throw new UnssuportedMathOperationException("Please set a numeric value");
+        return Math.sqrt(convertToDouble(number));
+    }
+
     private Double convertToDouble(String strNumber) throws UnssuportedMathOperationException {
         if (strNumber == null || strNumber.isEmpty()) throw new UnssuportedMathOperationException("Please set a numeric value");
         return Double.parseDouble(strNumber);
